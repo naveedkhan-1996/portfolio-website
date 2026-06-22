@@ -4,9 +4,12 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail';
 import Blog from './pages/Blog';
+import BlogPostDetail from './pages/BlogPostDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
+
 
 function App() {
   const [IsDarkMode, setIsDarkMode] = useState(() => {
@@ -34,15 +37,16 @@ function App() {
   return (
     <Router>
       <div className="app-container">
-        {/* Pass the theme state and toggle function to Navbar */}
+        
         <Navbar IsDarkMode={IsDarkMode} toggleTheme={toggleTheme} />
         
-        {/* Main content wrapper to ensure footer stays at the bottom */}
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path='/projects/:id' element={<ProjectDetail />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPostDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

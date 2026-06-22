@@ -7,7 +7,7 @@ const Home = () => {
         <div className='page-container' style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center', textAlign: 'center', 'marginTop': '4rem'}}>
 
             <header className='glass-panel' style={{ maxWidth: '800px', width: '100%' }}>
-                <h1 style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>
+                <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
                     Hi, I'm Naveed ur Rehman
                 </h1>
                 <h2 style={{ fontWeight: '300', opacity: 0.6, marginBottom: '1.2rem' }}>

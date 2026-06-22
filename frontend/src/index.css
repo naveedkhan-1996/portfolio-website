@@ -50,13 +50,6 @@ body {
   margin: 0 auto;
 }
 
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 2rem;
-}
 
 .page-container {
   width: 100%;
@@ -105,60 +98,41 @@ body {
   z-index: 10;
 }
 
-nav li a {
+/* Link */
+nav ul li a {
   position: relative;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
 }
 
-nav li a::after {
+nav ul li a::after {
   content: '';
   position: absolute;
   width: 0;
   height: 2px;
   bottom: 0;
   left: 0;
-  color: red;
   background-color: currentColor;
   transition: width 0.3s ease;
 }
 
-nav li a:hover::after {
+nav ul li a:hover::after {
   width: 100%;
 }
 
-input::placeholder {
+.about-text {
+  padding: 1.5rem !important;
+  font-size: 1.1rem;
+  line-height: 1.9;
   color: var(--text-color);
-  opacity: 0.6;
-}
-
-.social-link {
-  display: inline-block;
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-}
-
-.social-link:hover {
-  transform: translateY(-3px);
-  opacity: 0.8;
-}
-
-h1, h2, h3, h4 {
-  margin-top: 0;
-  font-weight: 600;
 }
 
 .skill-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  
 }
 
 .progress-track {
   width: 100%;
-  height: 4px;
+  height: 13px;
   background: var(--glass-border);
   border-radius: 10px;
   overflow: hidden;
@@ -167,20 +141,32 @@ h1, h2, h3, h4 {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--text-color), rgba(130, 130, 130, 0.5));
   border-radius: 10px;
+  background: linear-gradient(90deg, var(--text-color), rgba(5, 106, 238, 0.5));
   transition: width 1s ease-in-out;
 }
-
 
 body.dark-theme .progress-fill {
   background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.4));
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--text-color)
+}
+
 .contact-input {
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 1rem 1rem;
   background: var(--glass-border);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -189,9 +175,33 @@ body.dark-theme .progress-fill {
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.contact-input:focus {
+.glass-panel-contact {
+  width: 90%;
+  padding: 15px;
+  max-width: 1100px;   
+  margin: 30px auto;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+}
+
+.glass-panel-contact::placeholder {
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+.glass-panel-contact:focus {
   border-color: var(--text-color);
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+h1, h2, h3, h4 {
+  margin-top: 0;
+  font-weight: 600;
 }
 
 a {
@@ -204,56 +214,53 @@ a:hover {
   opacity: 0.7;
 }
 
-input, select, textarea {
-  font-family: inherit;
-  font-size: 1rem;
+.project-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 1px solid var(--glass-border);
 }
 
-
-select option {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+.project-card:hover {
+  transform: translateY(-8px); /* Lifts higher than a normal glass panel */
+  box-shadow: var(--glass-hover-shadow);
+  border-color: rgba(255, 255, 255, 0.4); /* Gives the edge a slight glow */
 }
 
-button {
-  font-family: inherit;
-  border: none;
-  outline: none;
+.read-more-btn {
+  align-self: flex-start;
+  background: var(--text-color);
+  color: var(--bg-color) !important; /* Inverts color for high contrast */
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
-.about-text {
-    flex: 1;
-    min-width: 700px;
+.read-more-btn:hover {
+  opacity: 0.8;
+  transform: translateX(5px); /* Slides the button right on hover */
 }
 
-.about-text h2 {
-    text-align: center;
+/* Styling for GitHub and Live links */
+.action-link {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
 
-.about-text p {
-    line-height: 1.8;
-    font-size: 1rem;
-    text-align: justify;
-    word-wrap: break-word;
-}
-
-@media (max-width: 768px) {
-    .about-text {
-        min-width: 100%;
-    }
-
-    .about-text p {
-        font-size: 0.95rem;
-        line-height: 1.7;
-    }
+.action-link:hover {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
   .app-container {
-    padding: 1rem;
-  }
-
-  nav {
+    display: flex !important;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem !important;
@@ -265,19 +272,6 @@ button {
     gap: 1rem !important;
   }
 
-  .about-top-section {
-    flex-direction: column;
-    text-align: center;
-
-  }
-
-  .filter-section {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  select {
-    width: 100%;
-    margin-top: 1rem;
-  }
+  .brand { justify-self: center !important; }
+  nav > div:last-child { align-self: center !important; }
 }

@@ -6,7 +6,7 @@ const About = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/skills/')
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/skills/`)
         .then(response => {
             setSkills(response.data);
             setLoading(false);
@@ -22,12 +22,12 @@ const About = () => {
 
             <div className='glass-panel' style={{ marginBottom: '2rem', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
 
-                <div style={{ flex: '0 0 200px', height: '200px', borderRadius: '50%', overflow: 'hidden', border: '4px solid var(--glass-border)', boxShadow: 'var(--glass-shadow)', margin: '0 auto' }}>
-                    <img src="/src/WhatsApp Image 2026-05-01.jpeg" alt="Naveed ur Rehman" style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+                <div style={{ flex: '0 0 200px', height: '200px', borderRadius: '50%', overflow: 'hidden', border: '4px solid var(--glass-border)', boxShadow: 'var(--glass-shadow)', margin: '15px auto' }}>
+                    <img src="/src/WhatsApp Image 2026-05-01.jpeg" alt="Naveed ur Rehman" style={{ width: '100%', height: '100%', objectFit: 'cover'}}/>
                 </div>
 
                 <div className='about-text'>
-                    <h2>About Me</h2>
+                    <h2 style={{ textAlign: 'center'}}>About Me</h2>
                     <p>
                         Hi, I am Naveed Ur Rehman, a passionate Software Development who enjoys building modern, responsive and user-friendly web applications.
                         My journey into software development began with a curiosity about how websites and applications work behind the scenes.

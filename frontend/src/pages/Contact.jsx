@@ -16,7 +16,7 @@ const Contact = () => {
         setStatus('loading');
 
         try {
-            await axios.post('http://127.0.0.1:8000/api/contact/', formData);
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/contact/`, formData);
             setStatus('success');
             setFormData({ name: '', email: '', subject: '', message: '' });
 
@@ -32,28 +32,28 @@ const Contact = () => {
 
             <div className='glass-panel' style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <h2><FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '10px' }} /> Get In Touch</h2>
-                <p style={{ opacity: 0.8 }}>
+                <p style={{ opacity: 0.8, margin: '20px auto' }}>
                     Have a project in mind or want to discuss opportunities? Send me a message and I'll get back to you shortly.
                 </p>
             </div>
 
-            <div className='glass-panel'>
+            <div className='glass-panel-contact'>
                 {status === 'success' ? (
                     <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#19ee67' }}>
                         <FontAwesomeIcon icon={faCheckCircle} size="3x" style={{ marginBottom: '1rem' }}/>
                         <h3>Message Sent!</h3>
                         <p style={{ color: 'var(--text-color)' }}> Thank you for reaching out. I'll be in touch soon.</p>
                     </div>
-                ): (
-                    <form onSubmit={contactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                ) : (
+                    <form onSubmit={contactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                         
                         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-                            <div style={{ flex: 1, minWidth: '250px' }}>
+                            <div style={{ flex: 1, minWidth: '280px' }}>
                                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Name</label>
                                 <input type="text" name="name" value={formData.name} onChange={dataChange} required className='contact-input' />
                             </div>
 
-                            <div style={{ flex: 1, minWidth: '250px' }}>
+                            <div style={{ flex: 1, minWidth: '280px' }}>
                                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Email</label>
                                 <input type="email" name="email" value={formData.email} onChange={dataChange} required className='contact-input' />
                             </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCalendarAlt, faBookOpen, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,13 +16,13 @@ const Blog = () => {
     useEffect(() => {
         setLoading(true);
 
-        const url = `http://127.0.0.1:8000/api/blog/?page=${currentPage}&search=${searchTerm}`;
+        const url = `${import.meta.env.VITE_API_BASE_URL}/blog/?page=${currentPage}&search=${searchTerm}`;
 
         axios.get(url)
             .then(response => {
-                setPosts(response.data.results);
-                setHasNext(response.data.next !== null);
-                setHasPrev(response.data.previous !== null);
+                setPosts(response.data.results || response.data);
+                setHasNext(response.data.next !== null && response.data.next !== undefined);
+                setHasPrev(response.data.previous !== null && response.data.previous !== undefined);
                 setLoading(false);
             })
             .catch(error => {
@@ -48,8 +49,8 @@ const Blog = () => {
         <div className='page-container' style={{ maxWidth: '900px', margin: '0 auto' }}>
 
             <div className='glass-panel' style={{display: 'flex', alignItems: 'center', marginBottom: '2.5rem', padding: '1rem 1.5rem' }}>
-                <FontAwesomeIcon icon={faSearch} style={{ opacity: 0.6, marginRight: '15px', fontSize: '1.2rem' }}/>
-                <input type="text" placeholder='Search articles...' value={searchTerm} onChange={searchChange} style={{border: 'none', background: 'transparent', color: 'inherit', width: '100%', outline: 'none', fontSize: '1.1rem' }} />
+                <FontAwesomeIcon icon={faSearch} style={{ opacity: 0.5, marginRight: '15px', fontSize: '1.2rem' }}/>
+                <input type="text" placeholder='Search articles...' value={searchTerm} onChange={searchChange} className='search-input' />
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', minHeight: '50vh' }}>
@@ -74,9 +75,8 @@ const Blog = () => {
                                 {post.content.length > 250 ? `${post.content.substring(0, 250)}...` : post.content}
                             </p>
 
-                            <button style={{ alignSelf: 'flex-start', background: 'var(--glass-border)', color: 'inherit', border: '1px solid var(--glass-border)', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', marginTop: '0.5rem' }}>
-                                Read More
-                            </button>
+                            <Link to={`/blog/${post.id}`} style={{ alignSelf: 'flex-start', background: 'var(--glass-border)', color: 'inherit', border: '1px solid var(--glass-border)', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', marginTop: '0.5rem', textDecoration: 'none' }}>Read More</Link>
+
                         </article>
                     ))
                 )}
